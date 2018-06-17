@@ -20,6 +20,7 @@ public class IUserDaoTest {
     private Application_Database db;
     static final String name="kamogelo";
     static final String name2="kamogelo";
+
     @Before
     public void setUp() throws Exception {
         Context context = InstrumentationRegistry.getTargetContext();

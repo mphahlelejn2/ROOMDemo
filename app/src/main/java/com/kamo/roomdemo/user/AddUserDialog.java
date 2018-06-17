@@ -11,7 +11,6 @@ import com.kamo.roomdemo.entity.User;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 public class AddUserDialog extends Dialog {
 
     @BindView(R.id.bCancel)

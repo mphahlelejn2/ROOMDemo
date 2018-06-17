@@ -1,19 +1,10 @@
 package com.kamo.roomdemo.user;
 
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.kamo.roomdemo.R;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -25,23 +16,16 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.*;
 
 public class UserFragmentTest {
 
-    private static final int ITEM_BELOW_THE_FOLD = 4;
+    private static final int ITEM_BELOW_THE_FOLD = 2;
+    private static final int ITEM_TO_DELETE = 0;
 
     @Rule
     public ActivityTestRule<UserActivity> mActivityRule=new ActivityTestRule<>(UserActivity.class);
-    @Test
-    public void getRecyclerView() throws Exception {
-        String itemElementText = "kamogelo";
-        onView(withId(R.id.recycler_view)).perform(scrollToPosition(ITEM_BELOW_THE_FOLD));
-        onView(withRecyclerView(R.id.recycler_view).atPosition( ITEM_BELOW_THE_FOLD)).check(matches(hasDescendant(withText(itemElementText))));
-    }
 
     @Test
     public void addNewUser()
@@ -56,14 +40,20 @@ public class UserFragmentTest {
                 .perform(click());
     }
 
+
     @Test
     public void deleteUser() throws Exception {
-        onView(withId(R.id.recycler_view)).perform(scrollToPosition(ITEM_BELOW_THE_FOLD));
-        onView(withRecyclerView(R.id.recycler_view).atPosition( ITEM_BELOW_THE_FOLD)).perform(swipeRight());
+        onView(withId(R.id.recycler_view)).perform(scrollToPosition(ITEM_TO_DELETE));
+        onView(withRecyclerView(R.id.recycler_view).atPosition(ITEM_TO_DELETE)).perform(swipeRight());
         Espresso.onView(withText("REMOVE"))
                 .perform(click());
     }
-
+    @Test
+    public void getRecyclerView() throws Exception {
+        String itemElementText = "kamogelo";
+        onView(withId(R.id.recycler_view)).perform(scrollToPosition(ITEM_BELOW_THE_FOLD));
+        onView(withRecyclerView(R.id.recycler_view).atPosition( ITEM_BELOW_THE_FOLD)).check(matches(hasDescendant(withText(itemElementText))));
+    }
 
     public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
         return new RecyclerViewMatcher(recyclerViewId);

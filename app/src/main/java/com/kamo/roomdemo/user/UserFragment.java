@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class UserFragment extends Fragment implements IUser.View {
 
-    private UserAdapter userAdapter;
+    public UserAdapter userAdapter;
     private IUser.IUserViewModel viewModel;
     @BindView(R.id.recycler_view)
     public RecyclerView recyclerView;

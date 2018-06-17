@@ -1,6 +1,5 @@
 package com.kamo.roomdemo.dao;
 
-
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -13,10 +12,6 @@ import com.kamo.roomdemo.entity.User;
 import java.util.List;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
-
-/**
- * Created by Jeffrey.Mphahlele on 3/19/2018.
- */
 
 @Dao
 public interface IUserDao {

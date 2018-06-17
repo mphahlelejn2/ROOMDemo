@@ -13,7 +13,7 @@ import com.kamo.roomdemo.Util.UtilActivity;
 public class UserActivity extends AppCompatActivity {
 
     private UserFragment userFragment;
-    private FragmentManager fragmentManager;
+    public FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
